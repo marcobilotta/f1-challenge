@@ -3,7 +3,7 @@ spring:
   banner:
     location=classpath : /banner.txt
 
-# GENERAL CONFIGURATION SERVER
+# GENERAL CONFIGURATION SERVER (ENVIRONMENTS DEV, HML AND PRD)
 server:
   servlet:
     context-path : /f1-challenge
