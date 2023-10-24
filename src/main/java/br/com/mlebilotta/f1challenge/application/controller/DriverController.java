@@ -21,7 +21,7 @@ public class DriverController {
     @PostMapping
     public Driver driverRegister (@RequestBody DriverRequest driverRequest){
         Driver driverRegistered = new Driver();
-        driverRegistered = this.driverService.driverRegister(driverRequest.mapearDriverRequestParaDriver("eb113e07-4e26-4f1a-a384-8c6ca4bfa8e3"));
+        driverRegistered = this.driverService.driverRegister(driverRequest.mapearDriverRequestParaDriver(null));
         return driverRegistered;
     }
 }
