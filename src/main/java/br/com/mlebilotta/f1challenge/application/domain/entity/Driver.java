@@ -1,13 +1,13 @@
 package br.com.mlebilotta.f1challenge.application.domain.entity;
 
-import com.fasterxml.jackson.databind.deser.std.UUIDDeserializer;
-import jakarta.persistence.*;
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Table(name = "DRIVER")
 @Entity
+
 public class Driver {
 
     @Id

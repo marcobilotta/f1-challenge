@@ -3,6 +3,7 @@ package br.com.mlebilotta.f1challenge.application.controller;
 import br.com.mlebilotta.f1challenge.application.controller.request.DriverRequest;
 import br.com.mlebilotta.f1challenge.application.domain.entity.Driver;
 import br.com.mlebilotta.f1challenge.application.domain.service.DriverService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +20,7 @@ public class DriverController {
     }
 
     @PostMapping
-    public Driver driverRegister (@RequestBody DriverRequest driverRequest){
+    public Driver driverRegister (@Valid @RequestBody DriverRequest driverRequest){
         Driver driverRegistered = new Driver();
         driverRegistered = this.driverService.driverRegister(driverRequest.mapearDriverRequestParaDriver(null));
         return driverRegistered;
