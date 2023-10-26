@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/v1/piloto")
-
+@Log4j2
 public class DriverController {
 
     private final DriverService driverService;
@@ -23,6 +23,7 @@ public class DriverController {
 
     @PostMapping
     public Driver driverRegister (@Valid @RequestBody DriverRequest driverRequest){
+        log.info("DRIVER CONTROLLER > driverRegister > RESPONSE > STATUS: SUCESSO");
         return this.driverService.driverRegister(driverRequest.mapearDriverRequestParaDriver(null));
     }
 }
