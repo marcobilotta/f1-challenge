@@ -5,6 +5,8 @@ import br.com.mlebilotta.f1challenge.application.repository.DriverRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @Log4j2
 public class DriverService {
@@ -24,6 +26,10 @@ public class DriverService {
         this.driverRepository.save(driver);
         return driver;
         }
+
+    public Optional<Driver> driverSearchById (String id) {
+        return this.driverRepository.findByIdAndActive(id, true);
+    }
 }
 
 

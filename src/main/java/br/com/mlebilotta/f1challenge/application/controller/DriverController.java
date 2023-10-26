@@ -1,14 +1,16 @@
 package br.com.mlebilotta.f1challenge.application.controller;
 
 import br.com.mlebilotta.f1challenge.application.controller.request.DriverRequest;
+import br.com.mlebilotta.f1challenge.application.controller.response.DriverResponse;
 import br.com.mlebilotta.f1challenge.application.domain.entity.Driver;
 import br.com.mlebilotta.f1challenge.application.domain.service.DriverService;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/v1/piloto")
@@ -22,8 +24,18 @@ public class DriverController {
     }
 
     @PostMapping
-    public Driver driverRegister (@Valid @RequestBody DriverRequest driverRequest){
+    public Driver driverRegister (@Valid @RequestBody DriverRequest driverRequest) {
         log.info("DRIVER CONTROLLER > driverRegister > RESPONSE > STATUS: SUCESSO");
         return this.driverService.driverRegister(driverRequest.mapearDriverRequestParaDriver(null));
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DriverResponse> driverSearchById (@PathVariable String id) {
+        Optional<Driver> driver = this.driverService.driverSearchById(id);
+        if (driver.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(driver.get().mapearDriverParaDriverResponse());
+    }
+
 }
