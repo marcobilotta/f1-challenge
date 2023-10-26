@@ -1,7 +1,7 @@
 package br.com.mlebilotta.f1challenge.application.controller.request;
 
-import br.com.mlebilotta.f1challenge.application.domain.entity.enums.FunctionEnum;
 import br.com.mlebilotta.f1challenge.application.domain.entity.Driver;
+import br.com.mlebilotta.f1challenge.application.domain.entity.enums.FunctionEnum;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 
@@ -32,16 +32,15 @@ public record DriverRequest(
 ) {
 
     public Driver mapearDriverRequestParaDriver(String id) {
-        Driver driver = new Driver();
-        driver.setId(validarID(id));
-        driver.setName(name);
-        driver.setHeight(this.height);
-        driver.setCityOfBirth(this.cityOfBirth);
-        driver.setCountryOfBirth(this.countryOfBirth);
-        driver.setFunction(FunctionEnum.validateFunction(this.function));
-        driver.setActive(true);
-
-        return driver;
+        return Driver.builder()
+                .id(validarID(id))
+                .name(this.name)
+                .height(this.height)
+                .cityOfBirth(this.cityOfBirth)
+                .countryOfBirth(this.countryOfBirth)
+                .function(FunctionEnum.validateFunction(this.function))
+                .active(true)
+                .build();
     }
 
     private String validarID(String id) {
