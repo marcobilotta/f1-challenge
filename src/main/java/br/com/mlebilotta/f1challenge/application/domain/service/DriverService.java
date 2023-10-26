@@ -14,13 +14,13 @@ public class DriverService {
     }
 
     public Driver driverRegister(Driver driver) {
-        var nameDriver = this.driverRepository.findByname(driver.getName());
-        if (nameDriver != null) {
-            System.out.println("Usuário já existente!");
-            return driver;
-        } else {
-            this.driverRepository.save(driver);
-            return driver;
+        var driverResult = this.driverRepository.findByNameAndActive(driver.getName(), driver.getActive());
+        if (driverResult != null) {
+            throw new RuntimeException("Usuário já existente!");
         }
-    }
+        this.driverRepository.save(driver);
+        return driver;
+        }
 }
+
+

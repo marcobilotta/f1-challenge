@@ -1,8 +1,9 @@
 package br.com.mlebilotta.f1challenge.application.domain.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import br.com.mlebilotta.f1challenge.application.domain.entity.enums.FunctionEnum;
+import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+
 import java.time.LocalDate;
 
 @Table(name = "DRIVER")
@@ -16,8 +17,12 @@ public class Driver {
     private Double height;
     private String cityOfBirth;
     private String countryOfBirth;
-    private String function;
+
+    @Enumerated(EnumType.STRING)
+    private FunctionEnum function;
     private Boolean active;
+
+    @CreationTimestamp
     private LocalDate createdAt;
     private LocalDate lastModifiedAt;
 
@@ -41,8 +46,8 @@ public class Driver {
         return countryOfBirth;
     }
 
-    public String getFunction() {
-        return function;
+    public Boolean getActive() {
+        return this.active;
     }
 
     public void setId(String id) {
@@ -65,7 +70,11 @@ public class Driver {
         this.countryOfBirth = countryOfBirth;
     }
 
-    public void setFunction(String function) {
+    public void setFunction(FunctionEnum function) {
         this.function = function;
+    }
+
+    public void setActive (Boolean active) {
+        this.active = active;
     }
 }

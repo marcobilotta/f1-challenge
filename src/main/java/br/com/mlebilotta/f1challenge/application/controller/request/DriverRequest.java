@@ -1,10 +1,10 @@
 package br.com.mlebilotta.f1challenge.application.controller.request;
 
+import br.com.mlebilotta.f1challenge.application.domain.entity.enums.FunctionEnum;
 import br.com.mlebilotta.f1challenge.application.domain.entity.Driver;
-import br.com.mlebilotta.f1challenge.application.domain.service.DriverService;
-import br.com.mlebilotta.f1challenge.application.repository.DriverRepository;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
+
 import java.util.Objects;
 import java.util.UUID;
 
@@ -14,7 +14,7 @@ public record DriverRequest(
         @Length(min = 3, max = 50)
         String name,
 
-         Double height,
+        Double height,
 
         @NotBlank(message = "* Campo Obrigatório! *")
         @Length(min = 6)
@@ -38,7 +38,8 @@ public record DriverRequest(
         driver.setHeight(this.height);
         driver.setCityOfBirth(this.cityOfBirth);
         driver.setCountryOfBirth(this.countryOfBirth);
-        driver.setFunction(this.function);
+        driver.setFunction(FunctionEnum.validateFunction(this.function));
+        driver.setActive(true);
 
         return driver;
     }
