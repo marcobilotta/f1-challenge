@@ -25,7 +25,7 @@ public class DriverController {
 
     @PostMapping
     public Driver driverRegister (@Valid @RequestBody DriverRequest driverRequest) {
-        log.info("DRIVER CONTROLLER > driverRegister > RESPONSE > STATUS: SUCESSO");
+        log.info("DRIVER CONTROLLER > driverRegister > RESPONSE > STATUS: SUCESS");
         return this.driverService.driverRegister(driverRequest.mapearDriverRequestParaDriver(null));
     }
 
@@ -33,8 +33,10 @@ public class DriverController {
     public ResponseEntity<DriverResponse> driverSearchById (@PathVariable String id) {
         Optional<Driver> driver = this.driverService.driverSearchById(id);
         if (driver.isEmpty()) {
+            log.info("DRIVER CONTROLLER > driverSearchById > RESPONSE > STATUS: FAILED");
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
+        log.info("DRIVER CONTROLLER > driverSearchById > RESPONSE > STATUS: SUCESS");
         return ResponseEntity.status(HttpStatus.OK).body(driver.get().mapearDriverParaDriverResponse());
     }
 

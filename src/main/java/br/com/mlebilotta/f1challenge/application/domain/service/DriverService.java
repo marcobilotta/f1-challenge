@@ -23,11 +23,11 @@ public class DriverService {
             throw new RuntimeException("Usuário já existente!");
         }
         log.info("DRIVER SERVICE > driverRegister > driver [{}]", driver);
-        this.driverRepository.save(driver);
-        return driver;
+        return this.driverRepository.save(driver);
         }
 
     public Optional<Driver> driverSearchById (String id) {
+        log.info("DRIVER SERVICE > driverSearchById > driver [{}]", id);
         return this.driverRepository.findByIdAndActive(id, true);
     }
 }
