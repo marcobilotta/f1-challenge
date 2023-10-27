@@ -1,6 +1,5 @@
 package br.com.mlebilotta.f1challenge.application.domain.service;
 
-import br.com.mlebilotta.f1challenge.application.controller.request.DriverRequest;
 import br.com.mlebilotta.f1challenge.application.domain.entity.Driver;
 import br.com.mlebilotta.f1challenge.application.repository.DriverRepository;
 import lombok.extern.log4j.Log4j2;
