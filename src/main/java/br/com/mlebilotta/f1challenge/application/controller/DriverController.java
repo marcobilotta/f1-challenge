@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @RestController
@@ -38,5 +39,13 @@ public class DriverController {
         log.info("DRIVER CONTROLLER > driverSearchById > RESPONSE > STATUS: SUCESS");
         return ResponseEntity.status(HttpStatus.OK).body(driver.get().mapearDriverParaDriverResponse());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<DriverResponse> driverDeleteById (@PathVariable String id) {
+        Optional<Driver> driver = this.driverService.driverDeleteById(id);
+        return ResponseEntity.status(HttpStatus.OK).body(driver.get().mapearDriverParaDriverResponse());
+        }
+
+
 
 }

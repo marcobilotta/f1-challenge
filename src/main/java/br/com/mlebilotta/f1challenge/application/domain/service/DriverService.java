@@ -1,10 +1,12 @@
 package br.com.mlebilotta.f1challenge.application.domain.service;
 
+import br.com.mlebilotta.f1challenge.application.controller.request.DriverRequest;
 import br.com.mlebilotta.f1challenge.application.domain.entity.Driver;
 import br.com.mlebilotta.f1challenge.application.repository.DriverRepository;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -29,6 +31,18 @@ public class DriverService {
     public Optional<Driver> driverSearchById (String id) {
         log.info("DRIVER SERVICE > driverSearchById > driver [{}]", id);
         return this.driverRepository.findByIdAndActive(id, true);
+    }
+
+    public Optional<Driver> driverDeleteById (String id) {
+        var driverResult = this.driverRepository.findByIdAndActive(id, true);
+        if (driverResult.isEmpty()) {
+            throw new RuntimeException("Piloto não encontrado!");
+        }
+        driverResult.get().setActive(false);
+        driverResult.get().setLastModifiedAt(LocalDate.now());
+        Driver driver = driverResult.get();
+        this.driverRepository.save(driver);
+        return driverResult;
     }
 }
 
