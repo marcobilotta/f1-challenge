@@ -42,6 +42,7 @@ public class DriverService {
         driverResult.get().setLastModifiedAt(LocalDate.now());
         Driver driver = driverResult.get();
         this.driverRepository.save(driver);
+        log.info("DRIVER SERVICE > driverDeletedById > driver [{}]", id);
         return driverResult;
     }
 }
