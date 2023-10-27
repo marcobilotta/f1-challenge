@@ -33,7 +33,6 @@ public class DriverController {
     public ResponseEntity<DriverResponse> driverSearchById (@PathVariable String id) {
         Optional<Driver> driver = this.driverService.driverSearchById(id);
         if (driver.isEmpty()) {
-            log.info("DRIVER CONTROLLER > driverSearchById > RESPONSE > STATUS: FAILED");
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
         log.info("DRIVER CONTROLLER > driverSearchById > RESPONSE > STATUS: SUCESS");
