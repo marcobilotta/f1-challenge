@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @RestController
@@ -46,6 +47,15 @@ public class DriverController {
         return ResponseEntity.status(HttpStatus.OK).body(driver.get().mapearDriverParaDriverResponse());
         }
 
-
+    @PutMapping("/{id}")
+    public ResponseEntity<Driver> driverUpdate (@Valid @PathVariable String id, @RequestBody DriverRequest driverRequest) {
+        var driver = driverRequest.mapearDriverRequestParaDriver(id);
+        driver.setLastModifiedAt(LocalDate.now());
+        var driverSearch = this.driverService.driverSearchById(id);
+        if (driverSearch.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(this.driverService.driverRegister(driver));
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(driver);
+    }
 
 }
