@@ -32,17 +32,17 @@ public class DriverService {
         return this.driverRepository.findByIdAndActive(id, true);
     }
 
-    public Optional<Driver> driverDeleteById (String id) {
+    public Driver driverDeleteById (String id) {
         var driverResult = this.driverRepository.findByIdAndActive(id, true);
         if (driverResult.isEmpty()) {
             throw new RuntimeException("Piloto não encontrado!");
         }
-        driverResult.get().setActive(false);
-        driverResult.get().setLastModifiedAt(LocalDate.now());
         Driver driver = driverResult.get();
+        driver.setActive(false);
+        driver.setLastModifiedAt(LocalDate.now());
         this.driverRepository.save(driver);
         log.info("DRIVER SERVICE > driverDeletedById > driver [{}]", id);
-        return driverResult;
+        return driver;
     }
 }
 
