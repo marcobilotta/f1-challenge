@@ -5,6 +5,8 @@ import br.com.mlebilotta.f1challenge.application.domain.entity.Driver;
 import br.com.mlebilotta.f1challenge.application.domain.service.DriverService;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +24,9 @@ public class DriverController {
     }
 
     @PostMapping
-    public Driver driverRegister (@Valid @RequestBody DriverRequest driverRequest){
+    public ResponseEntity<Void> driverRegister (@Valid @RequestBody DriverRequest driverRequest){
         log.info("DRIVER CONTROLLER > driverRegister > RESPONSE > STATUS: SUCESSO");
-        return this.driverService.driverRegister(driverRequest.mapearDriverRequestParaDriver(null));
+        this.driverService.driverRegister(driverRequest.mapearDriverRequestParaDriver(null));
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }
