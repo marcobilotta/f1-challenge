@@ -8,7 +8,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDate;
 
 
-@Table(name = "DRIVER")
+//@Table(name = "DRIVER")
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity

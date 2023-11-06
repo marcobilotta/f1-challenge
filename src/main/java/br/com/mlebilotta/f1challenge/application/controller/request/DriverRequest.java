@@ -10,6 +10,7 @@ import java.util.UUID;
 
 public record DriverRequest(
 
+        String id,
         @NotBlank (message = "* Campo Obrigatório! *")
         @Length(min = 3, max = 50)
         String name,
