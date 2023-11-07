@@ -3,6 +3,7 @@ package br.com.mlebilotta.f1challenge.application.controller;
 import br.com.mlebilotta.f1challenge.application.controller.mapper.DriverMapper;
 import br.com.mlebilotta.f1challenge.application.controller.request.DriverRequest;
 import br.com.mlebilotta.f1challenge.application.controller.response.DriverResponse;
+import br.com.mlebilotta.f1challenge.application.domain.entity.enums.FunctionEnum;
 import br.com.mlebilotta.f1challenge.application.domain.service.DriverService;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;

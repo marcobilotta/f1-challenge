@@ -1,5 +1,10 @@
 package br.com.mlebilotta.f1challenge.application.domain.entity.enums;
 
+import br.com.mlebilotta.f1challenge.infrastructure.exception.InvalidFunctionException;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
+
+@Log4j2
 public enum FunctionEnum {
     PILOTO,
     PILOTO_DE_TESTES;
@@ -10,7 +15,8 @@ public enum FunctionEnum {
                 return function;
             }
         }
-        throw new RuntimeException("Função não é válida!");
+        log.error("DRIVER CONTROLLER > validateFunction > Função [{}] não permitida", functionRequest);
+        throw new InvalidFunctionException("Função não permitida!", HttpStatus.UNPROCESSABLE_ENTITY, new Throwable("Função não descrita na lista padrão do App"));
     }
 }
 

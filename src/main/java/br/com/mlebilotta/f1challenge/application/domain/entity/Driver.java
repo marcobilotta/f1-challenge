@@ -28,9 +28,9 @@ public class Driver {
 
     @Enumerated(EnumType.STRING)
     private FunctionEnum function;
+
     private Boolean active;
 
-    @CreationTimestamp
     private LocalDate createdAt;
     private LocalDate lastModifiedAt;
 }

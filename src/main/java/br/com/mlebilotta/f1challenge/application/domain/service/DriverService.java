@@ -27,15 +27,13 @@ public class DriverService {
             log.error("PACIENTE SERVICE > driverRegister > Driver [{}] já cadastrado! > CAUSA: [{}]", driver.getName(), ex.getCause());
             throw new DriverAlreadyExistsException(ex.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY, ex.getCause());
         }
+    }
+    private Boolean validateTheExistenceOfTheDriver (Driver driver) {
+        var driverResult = this.driverRepository.findByNameAndActive(driver.getName(), driver.getActive());
+        if (driverResult == null) {
+            return true;
         }
-        private Boolean validateTheExistenceOfTheDriver (Driver driver) {
-            var driverResult = this.driverRepository.findByNameAndActive(driver.getName(), driver.getActive());
-            if (driverResult == null) {
-                return true;
-            }
-            throw new IllegalArgumentException("Piloto já Cadastrado!", new Throwable("Piloto Existente na Base de Dados"));
-        }
-
-
+        throw new IllegalArgumentException("Piloto já Cadastrado!", new Throwable("Piloto Existente na Base de Dados"));
+    }
 }
 
