@@ -13,6 +13,7 @@ public record DriverResponse(
         Double height,
         String cityOfBirth,
         String countryOfBirth,
-        String function
+        String function,
+        Boolean active
 ) {
 }

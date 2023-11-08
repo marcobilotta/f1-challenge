@@ -1,5 +1,6 @@
 package br.com.mlebilotta.f1challenge.application.controller;
 
+import br.com.mlebilotta.f1challenge.application.controller.mapper.DriverMapper;
 import br.com.mlebilotta.f1challenge.application.controller.request.DriverRequest;
 import br.com.mlebilotta.f1challenge.application.controller.response.DriverResponse;
 import br.com.mlebilotta.f1challenge.application.domain.entity.Driver;
@@ -18,15 +19,19 @@ import java.util.Optional;
 public class DriverController {
 
     private final DriverService driverService;
+    private DriverMapper driverMapper;
 
     public DriverController (DriverService driverService) {
         this.driverService = driverService;
+        this.driverMapper = driverMapper;
     }
 
     @PostMapping
-    public Driver driverRegister (@Valid @RequestBody DriverRequest driverRequest) {
-        log.info("DRIVER CONTROLLER > driverRegister > RESPONSE > STATUS: SUCESS");
-        return this.driverService.driverRegister(driverRequest.mapearDriverRequestParaDriver(null));
+    public ResponseEntity<DriverResponse> driverRegister (@Valid @RequestBody DriverRequest driverRequest){
+        log.info("DRIVER CONTROLLER > driverRegister > REQUEST > Driver: [{}]", driverRequest.name());
+        var registeredDriver = this.driverService.driverRegister(driverMapper.driverRequestToDriver(driverRequest));
+        log.info("DRIVER CONTROLLER > driverRegister > RESPONSE > STATUS: SUCESSO");
+        return ResponseEntity.status(HttpStatus.CREATED).body(driverMapper.driverToDriverResponse(registeredDriver));
     }
 
     @GetMapping("/{id}")

@@ -9,7 +9,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDate;
 
 
-@Table(name = "DRIVER")
+//@Table(name = "DRIVER")
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -29,9 +29,9 @@ public class Driver {
 
     @Enumerated(EnumType.STRING)
     private FunctionEnum function;
+
     private Boolean active;
 
-    @CreationTimestamp
     private LocalDate createdAt;
     private LocalDate lastModifiedAt;
 

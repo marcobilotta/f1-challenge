@@ -3,13 +3,16 @@ package br.com.mlebilotta.f1challenge.application.controller.request;
 import br.com.mlebilotta.f1challenge.application.domain.entity.Driver;
 import br.com.mlebilotta.f1challenge.application.domain.entity.enums.FunctionEnum;
 import jakarta.validation.constraints.NotBlank;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
 public record DriverRequest(
 
+        String id,
         @NotBlank (message = "* Campo Obrigatório! *")
         @Length(min = 3, max = 50)
         String name,
@@ -26,9 +29,10 @@ public record DriverRequest(
 
         @NotBlank(message = "* Campo Obrigatório! *")
         @Length(min = 6)
-        String function
+        String function,
 
-
+        LocalDate createdAt,
+        LocalDate lastModifiedAt
 ) {
 
     public Driver mapearDriverRequestParaDriver(String id) {
