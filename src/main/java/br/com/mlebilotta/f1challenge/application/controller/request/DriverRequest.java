@@ -3,7 +3,6 @@ package br.com.mlebilotta.f1challenge.application.controller.request;
 import br.com.mlebilotta.f1challenge.application.domain.entity.Driver;
 import br.com.mlebilotta.f1challenge.application.domain.entity.enums.FunctionEnum;
 import jakarta.validation.constraints.NotBlank;
-import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import java.time.LocalDate;

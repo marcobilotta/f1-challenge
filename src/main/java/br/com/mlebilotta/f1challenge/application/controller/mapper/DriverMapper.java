@@ -4,7 +4,6 @@ import br.com.mlebilotta.f1challenge.application.controller.request.DriverReques
 import br.com.mlebilotta.f1challenge.application.controller.response.DriverResponse;
 import br.com.mlebilotta.f1challenge.application.domain.entity.Driver;
 import br.com.mlebilotta.f1challenge.application.domain.entity.enums.FunctionEnum;
-import lombok.ToString;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -22,6 +21,7 @@ public interface DriverMapper {
             return FunctionEnum.validateFunction(function);
         }
 
+    @Mapping(source = "active", target = "active")
     DriverResponse driverToDriverResponse (Driver driver);
 
 

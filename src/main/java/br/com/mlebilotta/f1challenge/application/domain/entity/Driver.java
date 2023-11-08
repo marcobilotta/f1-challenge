@@ -2,9 +2,11 @@ package br.com.mlebilotta.f1challenge.application.domain.entity;
 
 import br.com.mlebilotta.f1challenge.application.controller.response.DriverResponse;
 import br.com.mlebilotta.f1challenge.application.domain.entity.enums.FunctionEnum;
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Id;
 import lombok.*;
-import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 

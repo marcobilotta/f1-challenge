@@ -43,7 +43,7 @@ public class DriverService {
         driver.setActive(false);
         driver.setLastModifiedAt(LocalDate.now());
         this.driverRepository.save(driver);
-        log.info("DRIVER SERVICE > driverDeletedById > driver [{}]", id);
+        log.info("DriverService > driverDeletedById > Response > driver [{}]", id);
         return driver;
     }
     private Boolean validateTheExistenceOfTheDriver (Driver driver) {
