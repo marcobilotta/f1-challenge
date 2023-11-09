@@ -21,7 +21,7 @@ public class DriverController {
     private final DriverService driverService;
     private DriverMapper driverMapper;
 
-    public DriverController (DriverService driverService) {
+    public DriverController (DriverService driverService, DriverMapper driverMapper) {
         this.driverService = driverService;
         this.driverMapper = driverMapper;
     }

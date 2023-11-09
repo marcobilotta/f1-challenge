@@ -3,6 +3,7 @@ package br.com.mlebilotta.f1challenge.application.domain.service;
 import br.com.mlebilotta.f1challenge.application.domain.entity.Driver;
 import br.com.mlebilotta.f1challenge.application.repository.DriverRepository;
 import br.com.mlebilotta.f1challenge.infrastructure.exception.DriverAlreadyExistsException;
+import br.com.mlebilotta.f1challenge.infrastructure.exception.DriverNotExistsException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,7 @@ public class DriverService {
     public Driver driverDeleteById (String id) {
         var driverResult = this.driverRepository.findByIdAndActive(id, true);
         if (driverResult.isEmpty()) {
-            throw new RuntimeException("Piloto não encontrado!");
+            throw new DriverNotExistsException("Piloto não encontrado!", HttpStatus.UNPROCESSABLE_ENTITY, new Throwable("Id não existente na base de dados!"));
         }
         Driver driver = driverResult.get();
         driver.setActive(false);
