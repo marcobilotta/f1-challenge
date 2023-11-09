@@ -39,12 +39,12 @@ public class Driver {
 
     public DriverResponse mapearDriverParaDriverResponse() {
         return DriverResponse.builder()
-                .id(id)
-                .name(name)
-                .height(height)
-                .cityOfBirth(cityOfBirth)
-                .countryOfBirth(countryOfBirth)
-                .function(function.toString())
+                .id(this.id)
+                .name(this.name)
+                .height(this.height)
+                .cityOfBirth(this.cityOfBirth)
+                .countryOfBirth(this.countryOfBirth)
+                .function(this.function.toString())
                 .build();
     }
 }
