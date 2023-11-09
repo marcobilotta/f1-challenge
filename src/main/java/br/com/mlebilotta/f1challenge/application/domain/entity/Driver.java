@@ -1,5 +1,6 @@
 package br.com.mlebilotta.f1challenge.application.domain.entity;
 
+import br.com.mlebilotta.f1challenge.application.controller.response.DriverResponse;
 import br.com.mlebilotta.f1challenge.application.domain.entity.enums.FunctionEnum;
 import jakarta.persistence.*;
 import lombok.*;
@@ -33,4 +34,15 @@ public class Driver {
 
     private LocalDate createdAt;
     private LocalDate lastModifiedAt;
+
+    public DriverResponse mapearDriverParaDriverResponse() {
+        return DriverResponse.builder()
+                .id(id)
+                .name(name)
+                .height(height)
+                .cityOfBirth(cityOfBirth)
+                .countryOfBirth(countryOfBirth)
+                .function(function.toString())
+                .build();
+    }
 }
