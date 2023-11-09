@@ -19,9 +19,11 @@ import java.util.Optional;
 public class DriverController {
 
     private final DriverService driverService;
+    private DriverMapper driverMapper;
 
     public DriverController (DriverService driverService) {
         this.driverService = driverService;
+        this.driverMapper = driverMapper;
     }
 
     @PostMapping
