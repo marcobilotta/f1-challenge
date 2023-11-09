@@ -43,4 +43,11 @@ public class DriverController {
         log.info("DRIVER CONTROLLER > driverSearchById > RESPONSE > STATUS: SUCESS");
         return ResponseEntity.status(HttpStatus.OK).body(driver.get().mapearDriverParaDriverResponse());
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<DriverResponse> driverDeleteById (@PathVariable String id) {
+        Driver driver = this.driverService.driverDeleteById(id);
+        log.info("DriverController > driverDeleteById > Response > Status: SUCESS");
+        return ResponseEntity.status(HttpStatus.OK).body(driverMapper.driverToDriverResponse(driver));
+        }
 }

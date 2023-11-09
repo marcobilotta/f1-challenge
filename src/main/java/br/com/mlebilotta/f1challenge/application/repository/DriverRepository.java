@@ -10,4 +10,5 @@ import java.util.Optional;
 public interface DriverRepository extends JpaRepository<Driver,String> {
     Driver findByNameAndActive (String name, Boolean active);
     Optional<Driver> findByIdAndActive (String id, Boolean active);
+
 }
