@@ -1,11 +1,22 @@
 package br.com.mlebilotta.f1challenge.application.domain.entity;
 
+import br.com.mlebilotta.f1challenge.application.domain.entity.enums.FunctionEnum;
 import jakarta.persistence.*;
+import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDate;
 
-@Table(name = "DRIVER")
+
+//@Table(name = "DRIVER")
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+
+@Getter
+@Setter
+@Builder
+@ToString
 public class Driver {
 
     @Id
@@ -14,56 +25,12 @@ public class Driver {
     private Double height;
     private String cityOfBirth;
     private String countryOfBirth;
-    private String function;
+
+    @Enumerated(EnumType.STRING)
+    private FunctionEnum function;
+
     private Boolean active;
+
     private LocalDate createdAt;
     private LocalDate lastModifiedAt;
-
-    public String getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Double getHeight() {
-        return height;
-    }
-
-    public String getCityOfBirth() {
-        return cityOfBirth;
-    }
-
-    public String getCountryOfBirth() {
-        return countryOfBirth;
-    }
-
-    public String getFunction() {
-        return function;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setHeight(Double height) {
-        this.height = height;
-    }
-
-    public void setCityOfBirth(String cityOfBirth) {
-        this.cityOfBirth = cityOfBirth;
-    }
-
-    public void setCountryOfBirth(String countryOfBirth) {
-        this.countryOfBirth = countryOfBirth;
-    }
-
-    public void setFunction(String function) {
-        this.function = function;
-    }
 }
