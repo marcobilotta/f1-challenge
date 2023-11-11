@@ -35,7 +35,7 @@ public class DriverService {
         return this.driverRepository.findByIdAndActive(id, true);
     }
 
-    public Driver driverDeleteById (String id) {
+    public Optional<Driver> driverDeleteById (String id) {
         log.info("DriverService > driverDeletedById > Request > driver [{}]", id);
         var driverResult = this.driverRepository.findByIdAndActive(id, true);
         if (driverResult.isEmpty()) {

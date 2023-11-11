@@ -1,5 +1,6 @@
 package br.com.mlebilotta.f1challenge.application.controller;
 
+import br.com.mlebilotta.f1challenge.application.controller.mapper.DriverMapper;
 import br.com.mlebilotta.f1challenge.application.controller.request.DriverRequest;
 import br.com.mlebilotta.f1challenge.application.controller.response.DriverResponse;
 import br.com.mlebilotta.f1challenge.application.domain.entity.Driver;
@@ -19,9 +20,9 @@ import java.util.Optional;
 public class DriverController {
 
     private final DriverService driverService;
-    private DriverMapper driverMapper;
+    private final DriverMapper driverMapper;
 
-    public DriverController (DriverService driverService) {
+    public DriverController (DriverService driverService, DriverMapper driverMapper) {
         this.driverService = driverService;
         this.driverMapper = driverMapper;
     }
