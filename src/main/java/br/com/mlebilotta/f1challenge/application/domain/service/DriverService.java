@@ -32,16 +32,16 @@ public class DriverService {
 
     public Optional<Driver> driverSearchById (String id) {
         log.info("DriverService > driverSearchById > Request > driver [{}]", id);
-        return this.driverRepository.findByIdAndActive(id, true);
+        return this.driverRepository.findByIdAndActive(id, Driver.DRIVER_STATUS_ACTIVE_TRUE);
     }
 
     public Optional<Driver> driverDeleteById (String id) {
         log.info("DriverService > driverDeletedById > Request > driver [{}]", id);
-        var driverResult = this.driverRepository.findByIdAndActive(id, true);
+        var driverResult = this.driverRepository.findByIdAndActive(id, Driver.DRIVER_STATUS_ACTIVE_TRUE);
         if (driverResult.isEmpty()) {
             throw new DriverNotExistsException("Piloto não encontrado!", HttpStatus.UNPROCESSABLE_ENTITY, new Throwable("Id não existente na base de dados!"));
         }
-        driverResult.get().setActive(false);
+        driverResult.get().setActive(Driver.DRIVER_STATUS_ACTIVE_FALSE);
         driverResult.get().setLastModifiedAt(LocalDate.now());
         this.driverRepository.save(driverResult.get());
         log.info("DriverService > driverDeletedById > Response > Status: SUCESS > Driver [{}]", id);

@@ -22,6 +22,9 @@ import java.time.LocalDate;
 @ToString
 public class Driver {
 
+    public static final Boolean DRIVER_STATUS_ACTIVE_TRUE = true;
+    public static final Boolean DRIVER_STATUS_ACTIVE_FALSE = false;
+
     @Id
     private String id;
     private String name;
