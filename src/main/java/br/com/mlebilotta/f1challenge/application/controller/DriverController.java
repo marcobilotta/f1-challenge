@@ -37,10 +37,10 @@ public class DriverController {
     @GetMapping("/{id}")
     public ResponseEntity<DriverResponse> driverSearchById (@PathVariable String id) {
         Optional<Driver> driver = this.driverService.driverSearchById(id);
+        log.info("DriverController > driverSearchById > Response > Status: SUCESS");
         if (driver.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
-        log.info("DRIVER CONTROLLER > driverSearchById > RESPONSE > STATUS: SUCESS");
         return ResponseEntity.status(HttpStatus.OK).body(driver.get().mapearDriverParaDriverResponse());
     }
 

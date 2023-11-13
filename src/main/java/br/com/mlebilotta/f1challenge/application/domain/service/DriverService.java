@@ -48,12 +48,5 @@ public class DriverService {
         log.info("DriverService > driverDeletedById > Response > Status: SUCESS > Id [{}]", id);
         return driver;
     }
-    private Boolean validateTheExistenceOfTheDriver (Driver driver) {
-        var driverResult = this.driverRepository.findByNameAndActive(driver.getName(), driver.getActive());
-        if (driverResult == null) {
-            return true;
-        }
-        throw new IllegalArgumentException("Piloto já Cadastrado!", new Throwable("Piloto Existente na Base de Dados"));
-    }
 }
 
