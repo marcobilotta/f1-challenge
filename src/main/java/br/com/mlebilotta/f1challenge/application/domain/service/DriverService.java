@@ -37,7 +37,7 @@ public class DriverService {
 
     public Optional<Driver> driverDeleteById (String id) {
         log.info("DriverService > driverDeletedById > Request > driver [{}]", id);
-        var driverResult = this.driverRepository.findByIdAndActive(id, Driver.DRIVER_STATUS_ACTIVE_TRUE);
+        var driverResult = this.driverSearchById(id);
         if (driverResult.isEmpty()) {
             throw new DriverNotExistsException("Piloto não encontrado!", HttpStatus.UNPROCESSABLE_ENTITY, new Throwable("Id não existente na base de dados!"));
         }
