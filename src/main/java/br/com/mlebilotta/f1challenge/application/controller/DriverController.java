@@ -46,8 +46,8 @@ public class DriverController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<DriverResponse> driverDeleteById (@PathVariable String id) {
+        log.info("DriverController > driverDeleteById > Request > Driver [{}]", id);
         Optional<Driver> driver = this.driverService.driverDeleteById(id);
-        log.info("DRIVER CONTROLLER > driverDeleteById > RESPONSE > STATUS: SUCESS");
         return ResponseEntity.status(HttpStatus.OK).body(driver.get().mapearDriverParaDriverResponse());
         }
 

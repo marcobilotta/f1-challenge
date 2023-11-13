@@ -41,12 +41,11 @@ public class DriverService {
         if (driverResult.isEmpty()) {
             throw new DriverNotExistsException("Piloto não encontrado!", HttpStatus.UNPROCESSABLE_ENTITY, new Throwable("Id não existente na base de dados!"));
         }
-        Driver driver = driverResult.get();
-        driver.setActive(false);
-        driver.setLastModifiedAt(LocalDate.now());
-        this.driverRepository.save(driver);
-        log.info("DriverService > driverDeletedById > Response > Status: SUCESS > Id [{}]", id);
-        return driver;
+        driverResult.get().setActive(false);
+        driverResult.get().setLastModifiedAt(LocalDate.now());
+        this.driverRepository.save(driverResult.get());
+        log.info("DriverService > driverDeletedById > Response > Status: SUCESS > Driver [{}]", id);
+        return driverResult;
     }
 }
 
