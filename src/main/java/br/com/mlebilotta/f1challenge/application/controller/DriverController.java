@@ -28,9 +28,10 @@ public class DriverController {
     }
 
     @PostMapping
-    public Driver driverRegister (@Valid @RequestBody DriverRequest driverRequest) {
+    public ResponseEntity<DriverResponse> driverRegister (@Valid @RequestBody DriverRequest driverRequest) {
         log.info("DRIVER CONTROLLER > driverRegister > RESPONSE > STATUS: SUCESS");
-        return this.driverService.driverRegister(driverRequest.mapearDriverRequestParaDriver(null));
+        this.driverService.driverRegister(driverMapper.driverRequestToDriver(driverRequest));
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/{id}")
@@ -40,7 +41,7 @@ public class DriverController {
         if (driver.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
         }
-        return ResponseEntity.status(HttpStatus.OK).body(driver.get().mapearDriverParaDriverResponse());
+        return ResponseEntity.status(HttpStatus.OK).body(driverMapper.driverToDriverResponse(driver.get()));
     }
 
     @DeleteMapping("/{id}")
@@ -52,7 +53,7 @@ public class DriverController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Driver> driverUpdate (@Valid @PathVariable String id, @RequestBody DriverRequest driverRequest) {
-        var driver = driverRequest.mapearDriverRequestParaDriver(id);
+        var driver = driverMapper.driverRequestToDriver(driverRequest);
         driver.setLastModifiedAt(LocalDate.now());
         var driverSearch = this.driverService.driverSearchById(id);
         if (driverSearch.isEmpty()) {
@@ -60,5 +61,4 @@ public class DriverController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(driver);
     }
-
 }

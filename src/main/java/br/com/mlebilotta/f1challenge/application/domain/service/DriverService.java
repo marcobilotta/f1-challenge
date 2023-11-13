@@ -24,7 +24,7 @@ public class DriverService {
         log.info("DriverService > driverRegister > Request > driver [{}]", driver);
         var driverResult = this.driverRepository.findByNameAndActive(driver.getName(), driver.getActive());
         if (driverResult != null) {
-            throw new RuntimeException("Usuário já existente!");
+            throw new DriverNotExistsException("Driver já existente!", HttpStatus.UNPROCESSABLE_ENTITY, new Throwable("Driver já existente na base de dados!"));
         }
         log.info("DriverService > driverRegister > Response > Status: SUCESS > driver [{}]", driver);
         return this.driverRepository.save(driver);
