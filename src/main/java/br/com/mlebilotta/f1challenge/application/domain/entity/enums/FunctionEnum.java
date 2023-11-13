@@ -1,6 +1,6 @@
 package br.com.mlebilotta.f1challenge.application.domain.entity.enums;
 
-import br.com.mlebilotta.f1challenge.infrastructure.exception.InvalidFunctionException;
+import br.com.mlebilotta.f1challenge.infrastructure.exception.driverException.InvalidFunctionException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 

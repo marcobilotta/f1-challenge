@@ -2,7 +2,7 @@ package br.com.mlebilotta.f1challenge.application.domain.service;
 
 import br.com.mlebilotta.f1challenge.application.domain.entity.Driver;
 import br.com.mlebilotta.f1challenge.application.repository.DriverRepository;
-import br.com.mlebilotta.f1challenge.infrastructure.exception.DriverNotExistsException;
+import br.com.mlebilotta.f1challenge.infrastructure.exception.driverException.DriverNotExistsException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

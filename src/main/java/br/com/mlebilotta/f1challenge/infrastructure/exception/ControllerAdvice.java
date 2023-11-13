@@ -1,5 +1,6 @@
 package br.com.mlebilotta.f1challenge.infrastructure.exception;
 
+import br.com.mlebilotta.f1challenge.infrastructure.exception.driverException.CommonDriverException;
 import br.com.mlebilotta.f1challenge.infrastructure.exception.response.ErrorFieldsResponse;
 import br.com.mlebilotta.f1challenge.infrastructure.exception.response.ErrorResponse;
 import lombok.extern.log4j.Log4j2;
