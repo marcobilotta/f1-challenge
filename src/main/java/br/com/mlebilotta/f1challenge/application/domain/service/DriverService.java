@@ -1,7 +1,10 @@
 package br.com.mlebilotta.f1challenge.application.domain.service;
 
+import br.com.mlebilotta.f1challenge.application.controller.mapper.DriverMapper;
+import br.com.mlebilotta.f1challenge.application.controller.request.DriverRequest;
 import br.com.mlebilotta.f1challenge.application.domain.entity.Driver;
 import br.com.mlebilotta.f1challenge.application.repository.DriverRepository;
+import br.com.mlebilotta.f1challenge.infrastructure.exception.driverException.DriverAlreadyExistsException;
 import br.com.mlebilotta.f1challenge.infrastructure.exception.driverException.DriverNotExistsException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -24,7 +27,7 @@ public class DriverService {
         log.info("DriverService > driverRegister > Request > driver [{}]", driver);
         var driverResult = this.driverRepository.findByNameAndActive(driver.getName(), driver.getActive());
         if (driverResult != null) {
-            throw new DriverNotExistsException("Driver já existente!", HttpStatus.UNPROCESSABLE_ENTITY, new Throwable("Driver já existente na base de dados!"));
+            throw new DriverAlreadyExistsException("Driver já existente!", HttpStatus.UNPROCESSABLE_ENTITY, new Throwable("Driver já existente na base de dados!"));
         }
         log.info("DriverService > driverRegister > Response > Status: SUCESS > driver [{}]", driver);
         return this.driverRepository.save(driver);

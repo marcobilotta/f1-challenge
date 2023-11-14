@@ -5,13 +5,13 @@ import br.com.mlebilotta.f1challenge.application.controller.request.DriverReques
 import br.com.mlebilotta.f1challenge.application.controller.response.DriverResponse;
 import br.com.mlebilotta.f1challenge.application.domain.entity.Driver;
 import br.com.mlebilotta.f1challenge.application.domain.service.DriverService;
+import br.com.mlebilotta.f1challenge.infrastructure.exception.driverException.DriverNotExistsException;
 import jakarta.validation.Valid;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.Optional;
 
 @RestController
@@ -48,17 +48,18 @@ public class DriverController {
     public ResponseEntity<DriverResponse> driverDeleteById (@PathVariable String id) {
         log.info("DriverController > driverDeleteById > Request > Driver [{}]", id);
         Optional<Driver> driver = this.driverService.driverDeleteById(id);
-        return ResponseEntity.status(HttpStatus.OK).body(driver.get().mapearDriverParaDriverResponse());
+        return ResponseEntity.status(HttpStatus.OK).body(driverMapper.driverToDriverResponse(driver.get()));
         }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Driver> driverUpdate (@Valid @PathVariable String id, @RequestBody DriverRequest driverRequest) {
-        var driver = driverMapper.driverRequestToDriver(driverRequest);
-        driver.setLastModifiedAt(LocalDate.now());
-        var driverSearch = this.driverService.driverSearchById(id);
-        if (driverSearch.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(this.driverService.driverRegister(driver));
+    public ResponseEntity<DriverResponse> driverUpdateById(@Valid @PathVariable String id, @RequestBody DriverRequest driverRequest) {
+        log.info("DriverController > driverUpdate > Request > Driver id [{}]", id);
+        Optional<Driver> driverResult = this.driverService.driverSearchById(id);
+        if (driverResult.isEmpty()) {
+            throw new DriverNotExistsException("Driver não Encontrado!", HttpStatus.UNPROCESSABLE_ENTITY, new Throwable("Id não existente na base de dados!"));
         }
-        return ResponseEntity.status(HttpStatus.OK).body(driver);
+        var driver = driverMapper.driverRequestToDriver(driverRequest);
+        driverService.driverRegister(driver);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }
