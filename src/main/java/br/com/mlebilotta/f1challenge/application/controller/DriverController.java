@@ -54,12 +54,8 @@ public class DriverController {
     @PutMapping("/{id}")
     public ResponseEntity<DriverResponse> driverUpdateById(@Valid @PathVariable String id, @RequestBody DriverRequest driverRequest) {
         log.info("DriverController > driverUpdateById > Request > Driver id [{}]", id);
-        Optional<Driver> driverResult = this.driverService.driverSearchById(id);
-        if (driverResult.isEmpty()) {
-            throw new DriverNotExistsException("Driver não Encontrado!", HttpStatus.UNPROCESSABLE_ENTITY, new Throwable("Id não existente na base de dados!"));
-        }
         var driver = driverMapper.driverRequestToDriver(driverRequest);
-        driverService.driverRegister(driver);
+        this.driverService.driverUpdateById(id, driver);
         log.info("DriverController > driverUpdateById > Response > Status: SUCESS > Driver [{}]", driver);
         return ResponseEntity.status(HttpStatus.OK).build();
     }

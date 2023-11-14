@@ -50,5 +50,19 @@ public class DriverService {
         log.info("DriverService > driverDeletedById > Response > Status: SUCESS > Driver [{}]", id);
         return driverResult;
     }
+
+    public Driver driverUpdateById(String id, Driver driver) {
+        log.info("DriverService > driverUpdateById > Request > driver id [{}]", id);
+        var driverResult = this.driverSearchById(id);
+        if (driverResult.isEmpty()) {
+            this.driverRegister(driver);
+            log.info("DriverService > driverUpdateById > Response > Status: SUCESS > driver [{}]", driver);
+            return driver;
+        }
+        driver.setId(id);
+        this.driverRegister(driver);
+        log.info("DriverService > driverUpdateById > Response > Status: SUCESS > driver [{}]", driver);
+        return driver;
+    }
 }
 
