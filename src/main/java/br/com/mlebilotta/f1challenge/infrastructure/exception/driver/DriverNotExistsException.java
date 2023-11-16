@@ -1,5 +1,6 @@
-package br.com.mlebilotta.f1challenge.infrastructure.exception;
+package br.com.mlebilotta.f1challenge.infrastructure.exception.driver;
 
+import br.com.mlebilotta.f1challenge.infrastructure.exception.driver.CommonDriverException;
 import org.springframework.http.HttpStatus;
 
 public class DriverNotExistsException extends CommonDriverException {

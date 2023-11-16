@@ -1,20 +1,19 @@
 package br.com.mlebilotta.f1challenge.application.controller.request;
 
 import br.com.mlebilotta.f1challenge.application.controller.Constants;
-import jakarta.validation.constraints.NotBlank;
-import org.hibernate.validator.constraints.Length;
+import jakarta.validation.constraints.FutureOrPresent;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDate;
+import java.time.Year;
 
 public record SeasonRequest(
 
-        @NotBlank (message = Constants.MESSAGE_REQUIRED_FIELD)
         String id,
-        @NotBlank (message = Constants.MESSAGE_REQUIRED_FIELD)
-        @Length(min = 4, max = 4)
-        LocalDate seasonYear,
-
+        @NotNull(message = Constants.MESSAGE_REQUIRED_FIELD)
+        @FutureOrPresent
+        Year seasonYear,
         LocalDate createdAt,
-
         LocalDate lastModifiedAt) {
+
 }

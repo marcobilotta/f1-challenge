@@ -63,9 +63,9 @@ public class DriverController {
     //@Parameter(schema = @Schema(contentSchema = DriverRequest.class))
     @PostMapping
     public ResponseEntity<DriverResponse> driverRegister (@Valid @RequestBody DriverRequest driverRequest){
-        log.info("DRIVER CONTROLLER > driverRegister > REQUEST > Driver: [{}]", driverRequest.name());
+        log.info("DriverController > driverRegister > Request > Driver: [{}]", driverRequest.name());
         var registeredDriver = this.driverService.driverRegister(driverMapper.driverRequestToDriver(driverRequest));
-        log.info("DRIVER CONTROLLER > driverRegister > RESPONSE > STATUS: SUCESSO");
+        log.info("DriverController > driverRegister > Response > Status: SUCCESS > Driver: [{}]", driverRequest.name());
         return ResponseEntity.status(HttpStatus.CREATED).body(driverMapper.driverToDriverResponse(registeredDriver));
     }
 
