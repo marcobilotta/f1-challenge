@@ -28,4 +28,5 @@ public class SeasonController {
         var seasonRegistered = this.seasonService.seasonRegister(seasonMapper.seasonRequestToSeason(seasonRequest));
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
 }

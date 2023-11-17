@@ -1,16 +1,14 @@
 package br.com.mlebilotta.f1challenge.application.domain.entity;
 
-import br.com.mlebilotta.f1challenge.application.controller.Constants;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.Year;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
@@ -28,4 +26,11 @@ public class Season {
 
     @Column(name = "last_modified_at")
     private LocalDate lastModifiedAt;
+
+    public Year formatDateSeason(String year) {
+        DateTimeFormatter standardYearFormat = DateTimeFormatter.ofPattern("YYYY");
+        Year formattedYear = Year.parse(year, standardYearFormat);
+        return formattedYear;
+    }
+
 }

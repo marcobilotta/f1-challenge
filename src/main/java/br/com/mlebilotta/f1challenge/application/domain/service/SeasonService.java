@@ -19,7 +19,7 @@ public class SeasonService {
     public Season seasonRegister(Season season) {
         var seasonResult = this.seasonRepository.findBySeasonYear(season.getSeasonYear());
         if (seasonResult.isPresent()) {
-            throw new SeasonAlreadyExistsException("Session já existente!", HttpStatus.UNPROCESSABLE_ENTITY, new Throwable("Session Year já registrada na base de dados"));
+            throw new SeasonAlreadyExistsException("Session já existente!", HttpStatus.UNPROCESSABLE_ENTITY, new Throwable("Ano já registrado na base de dados"));
         }
         return this.seasonRepository.save(season);
     }

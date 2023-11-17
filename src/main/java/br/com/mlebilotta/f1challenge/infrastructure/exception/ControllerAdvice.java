@@ -11,6 +11,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.awt.event.FocusEvent;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @Log4j2
@@ -23,6 +25,13 @@ public class ControllerAdvice {
         log.error("Controllers > Erro de validação de campos obrigatórios - CAUSA: [{}]", errors.stream().map(ErrorFieldsResponse::new).toList());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.stream().map(ErrorFieldsResponse::new).toList());
     }
+    @ExceptionHandler(DateTimeParseException.class)
+    public ResponseEntity<String> dateTimeParseException(DateTimeParseException ex) {
+        var errors = ex.getMessage();
+        log.error("SeasonController > seasonRegister > Response > Erro na validação do campo SeasonYear - CAUSA: [{}]", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
+    }
+
     @ExceptionHandler(CommonDriverException.class)
     public ResponseEntity<ErrorResponse> commonDriverException(CommonDriverException ex) {
         ErrorResponse error = ErrorResponse.builder()
