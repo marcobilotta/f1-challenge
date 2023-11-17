@@ -22,7 +22,7 @@ public class ControllerAdvice {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<List<ErrorFieldsResponse>> methodArgumentNotValidException(MethodArgumentNotValidException ex) {
         var errors = ex.getFieldErrors();
-        log.error("Controllers > Erro de validação de campos obrigatórios - CAUSA: [{}]", errors.stream().map(ErrorFieldsResponse::new).toList());
+        log.error("DriverController > driverRegister > Response > Driver não possui todos os campos obrigatórios - CAUSA: [{}]", errors.stream().map(ErrorFieldsResponse::new).toList());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.stream().map(ErrorFieldsResponse::new).toList());
     }
     @ExceptionHandler(DateTimeParseException.class)
