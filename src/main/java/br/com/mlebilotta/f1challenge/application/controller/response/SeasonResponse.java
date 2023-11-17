@@ -7,6 +7,6 @@ public record SeasonResponse(
         String id,
         Year seasonYear,
         LocalDate createdAt,
-        LocalDate lastModifiedAt
-) {
+        LocalDate lastModifiedAt) {
+
 }
