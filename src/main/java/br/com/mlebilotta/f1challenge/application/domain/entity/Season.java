@@ -27,10 +27,6 @@ public class Season {
     @Column(name = "last_modified_at")
     private LocalDate lastModifiedAt;
 
-    public Year formatDateSeason(String year) {
-        DateTimeFormatter standardYearFormat = DateTimeFormatter.ofPattern("YYYY");
-        Year formattedYear = Year.parse(year, standardYearFormat);
-        return formattedYear;
-    }
-
 }
+
+
