@@ -22,14 +22,8 @@ public class ControllerAdvice {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<List<ErrorFieldsResponse>> methodArgumentNotValidException(MethodArgumentNotValidException ex) {
         var errors = ex.getFieldErrors();
-        log.error("DriverController > driverRegister > Response > Driver não possui todos os campos obrigatórios - CAUSA: [{}]", errors.stream().map(ErrorFieldsResponse::new).toList());
+        log.error("Controllers > registers > Response > Campo(s) Obrigatório(s) fora do padrão esperado - CAUSA: [{}]", errors.stream().map(ErrorFieldsResponse::new).toList());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors.stream().map(ErrorFieldsResponse::new).toList());
-    }
-    @ExceptionHandler(DateTimeParseException.class)
-    public ResponseEntity<String> dateTimeParseException(DateTimeParseException ex) {
-        var errors = ex.getMessage();
-        log.error("SeasonController > seasonRegister > Response > Erro na validação do campo SeasonYear - CAUSA: [{}]", ex.getMessage());
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
 
     @ExceptionHandler(CommonDriverException.class)
