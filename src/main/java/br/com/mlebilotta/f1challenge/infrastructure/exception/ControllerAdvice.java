@@ -11,8 +11,6 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.awt.event.FocusEvent;
-import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @Log4j2

@@ -8,7 +8,6 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.Year;
-import java.time.format.DateTimeFormatter;
 
 @Entity
 @Getter
