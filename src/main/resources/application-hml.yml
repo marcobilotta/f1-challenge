@@ -1,2 +1,12 @@
 # CONFIGURATIONS CUSTOMIZED ENVIRONMENT HOMOLOGATION (HML)
 
+spring:
+  datasource.url: ${DATABASE_URL_HML}
+  datasource.username: ${DATABASE_USERNAME_HML}
+  datasource.password: ${DATABASE_PASSWORD_HML}
+
+  jpa:
+    generate-ddl: true
+    hibernate.ddl-auto: update
+    open-in-view: false
+

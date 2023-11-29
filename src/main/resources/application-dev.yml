@@ -3,10 +3,10 @@
 # H2 DATABASE CONFIGURATIONS
 spring:
   datasource:
-    url : jdbc:h2:mem:f1_challenge
+    url : ${DATABASE_URL_DEV}
     driverClassName : org.h2.Driver
-    username : admin
-    password : 123456
+    username : ${DATABASE_USERNAME_DEV}
+    password : ${DATABASE_PASSWORD_DEV}
   h2:
     console:
       enabled : true
