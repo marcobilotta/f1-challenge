@@ -1,17 +1,11 @@
 package br.com.mlebilotta.f1challenge.application.domain.entity;
 
-import br.com.mlebilotta.f1challenge.application.controller.response.DriverResponse;
 import br.com.mlebilotta.f1challenge.application.domain.entity.enums.FunctionEnum;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 
-
-//@Table(name = "DRIVER")
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -24,27 +18,26 @@ public class Driver {
 
     @Id
     private String id;
+
     private String name;
+
     private Double height;
+
+    @Column(name = "city_of_birth")
     private String cityOfBirth;
+
+    @Column(name = "country_of_birth")
     private String countryOfBirth;
 
+    @Column(name = "driver_function")
     @Enumerated(EnumType.STRING)
-    private FunctionEnum function;
+    private FunctionEnum driverFunction;
 
     private Boolean active;
 
+    @Column(name = "created_at")
     private LocalDate createdAt;
-    private LocalDate lastModifiedAt;
 
-    public DriverResponse mapearDriverParaDriverResponse() {
-        return DriverResponse.builder()
-                .id(this.id)
-                .name(this.name)
-                .height(this.height)
-                .cityOfBirth(this.cityOfBirth)
-                .countryOfBirth(this.countryOfBirth)
-                .function(this.function.toString())
-                .build();
-    }
+    @Column(name = "last_modified_at")
+    private LocalDate lastModifiedAt;
 }

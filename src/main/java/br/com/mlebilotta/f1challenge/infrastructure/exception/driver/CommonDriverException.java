@@ -1,4 +1,4 @@
-package br.com.mlebilotta.f1challenge.infrastructure.exception;
+package br.com.mlebilotta.f1challenge.infrastructure.exception.driver;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;

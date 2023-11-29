@@ -10,7 +10,6 @@ public record DriverRequest(
 
         String id,
         @NotBlank (message = Constants.MESSAGE_REQUIRED_FIELD)
-
         @Length(min = 3, max = 50)
         String name,
 
@@ -25,7 +24,7 @@ public record DriverRequest(
 
         @NotBlank(message = Constants.MESSAGE_REQUIRED_FIELD)
         @Length(min = 6)
-        String function,
+        String driverFunction,
 
         LocalDate createdAt,
         LocalDate lastModifiedAt

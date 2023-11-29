@@ -14,12 +14,13 @@ public interface DriverMapper {
     @Mapping(target = "active", constant = "true")
     @Mapping(source = "createdAt", target = "createdAt", defaultExpression = "java(java.time.LocalDate.now())")
     @Mapping(target = "lastModifiedAt", expression = "java(java.time.LocalDate.now())")
-    @Mapping(source = "function", target = "function", qualifiedByName = "validateFunction")
+    @Mapping(source = "driverFunction", target = "driverFunction", qualifiedByName = "validateFunction")
     Driver driverRequestToDriver (DriverRequest driverRequest);
         @Named("validateFunction")
         default FunctionEnum validateFunction(String function) {
             return FunctionEnum.validateFunction(function);
         }
 
+    @Mapping(target = "driverFunction", expression = "java(driver.getDriverFunction().name())")
     DriverResponse driverToDriverResponse (Driver driver);
 }
