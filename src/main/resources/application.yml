@@ -8,3 +8,10 @@ server:
   servlet:
     context-path : /f1-challenge
   port : 5000
+
+# GENERAL CONFIGURATIONS SWAGGER
+swagger:
+  configuration:
+    title: F1 Challenge App
+    description: Get all data about F1
+    version: 1.0.0
