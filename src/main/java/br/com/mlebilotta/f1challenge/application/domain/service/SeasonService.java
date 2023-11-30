@@ -7,6 +7,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.Year;
+import java.util.Optional;
+
 @Log4j2
 @Service
 public class SeasonService {
@@ -23,5 +26,10 @@ public class SeasonService {
         }
         log.info("SeasonService > seasonRegister > Response > Status: SUCCESS > SeasonYear [{}], id [{}]", season.getSeasonYear(), season.getId());
         return this.seasonRepository.save(season);
+    }
+
+    public Optional<Season> seasonSearchBySeasonYear(Year seasonYear) {
+        log.info("SeasonService > seasonSearchByYear > Request > Season [{}]", seasonYear);
+        return this.seasonRepository.findBySeasonYear(seasonYear);
     }
 }
