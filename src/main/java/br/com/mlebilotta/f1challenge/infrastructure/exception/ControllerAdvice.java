@@ -1,5 +1,6 @@
 package br.com.mlebilotta.f1challenge.infrastructure.exception;
 
+import br.com.mlebilotta.f1challenge.infrastructure.exception.circuit.CommonCircuitException;
 import br.com.mlebilotta.f1challenge.infrastructure.exception.driver.CommonDriverException;
 import br.com.mlebilotta.f1challenge.infrastructure.exception.response.ErrorFieldsResponse;
 import br.com.mlebilotta.f1challenge.infrastructure.exception.response.ErrorResponse;
@@ -43,4 +44,15 @@ public class ControllerAdvice {
                 .build();
         return ResponseEntity.status(ex.getStatusCode()).body(error);
     }
+
+    @ExceptionHandler(CommonCircuitException.class)
+    public ResponseEntity<ErrorResponse> commonCircuitException(CommonCircuitException ex) {
+        ErrorResponse error = ErrorResponse.builder()
+                .status(ex.getStatusCode().toString())
+                .message(ex.getMessage())
+                .cause(ex.getCause().getMessage())
+                .build();
+        return ResponseEntity.status(ex.getStatusCode()).body(error);
+    }
+
 }
