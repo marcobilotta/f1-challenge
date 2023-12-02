@@ -1,6 +1,6 @@
 package br.com.mlebilotta.f1challenge.application.controller.request;
 
-import br.com.mlebilotta.f1challenge.application.controller.Constants;
+import br.com.mlebilotta.f1challenge.infrastructure.Constants;
 import jakarta.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.Length;
 
